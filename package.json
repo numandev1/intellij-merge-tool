@@ -4,22 +4,52 @@
 	"description": "merge with intellj",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.53.0"
+		"vscode": "^1.52.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:intellij-merge-tool.helloWorld"
+        "onCommand:intellij-merge-tool.merge"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "intellij-merge-tool.helloWorld",
-				"title": "Hello World"
+				"command": "intellij-merge-tool.merge",
+				"title": "merge with intellij"
 			}
-		]
+		],
+		"keybindings": [
+            {
+                "command": "intellij-merge-tool.merge",
+                "key": "ctrl+shift+h",
+                "mac": "ctrl+shift+h",
+                "when": "editorTextFocus"
+            }
+		],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "intellij-merge-tool.merge"
+                }
+            ],
+            "editor/title/context": [
+                {
+                    "command": "intellij-merge-tool.merge"
+                }
+			],
+			"commandPalette": [
+                {
+                    "command": "intellij-merge-tool.merge"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "intellij-merge-tool.merge"
+                }
+            ]
+        }
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
