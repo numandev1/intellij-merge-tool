@@ -1,5 +1,6 @@
 import {window, commands,ExtensionContext} from 'vscode';
 import {openIntelliJMergeTool} from './mergetool';
+import {NOT_FOUND_CONFLICT_ERROR} from './util/util';
 export function activate(context: ExtensionContext) {
     const disposableArray = [];
 
@@ -7,7 +8,7 @@ export function activate(context: ExtensionContext) {
         if(uri && uri.path) {
 		openIntelliJMergeTool(uri.path)
         } else {
-            window.showErrorMessage('This file has no merge conflict');
+            window.showErrorMessage(NOT_FOUND_CONFLICT_ERROR);
         }
 	}));
 	

@@ -1,5 +1,6 @@
+import {window} from 'vscode';
+import {NOT_FOUND_CONFLICT_ERROR, FOUND_CONFLICT_ERROR} from './util/util';
 const fs=require('fs');
-
 export const isThisFileHaveConflict=(filePath:string)=>{
     const fileContent=fs.readFileSync(filePath, 'utf8');
     const regexDetectMergeConflicts=/<<<<<<< HEAD(\n+.+)\n\=\=\=\=\=\=/g;
@@ -10,10 +11,10 @@ export const isThisFileHaveConflict=(filePath:string)=>{
 export const openIntelliJMergeTool=(filePath:string)=>{
     if(isThisFileHaveConflict(filePath))
     {
-        console.log("have conflict");
+        window.showInformationMessage(FOUND_CONFLICT_ERROR);
     }
     else
     {
-        console.log("have not conflict");
+        window.showErrorMessage(NOT_FOUND_CONFLICT_ERROR);
     }
 }
