@@ -1,17 +1,19 @@
-import {window, commands,ExtensionContext} from 'vscode';
-import {openIntelliJMergeTool} from './mergetool';
-import {NOT_FOUND_CONFLICT_ERROR} from './util/util';
+import { window, commands, ExtensionContext } from 'vscode';
+import { openIntelliJMergeTool } from './mergetool';
+import { NOT_FOUND_CONFLICT_ERROR } from './util/util';
 export function activate(context: ExtensionContext) {
-    const disposableArray = [];
+	const disposableArray = [];
 
-    disposableArray.push(commands.registerCommand('intellij-merge-tool.merge', (uri: any) => {
-        if(uri && uri.path) {
-		openIntelliJMergeTool(uri.path)
-        } else {
-            window.showErrorMessage(NOT_FOUND_CONFLICT_ERROR);
-        }
-	}));
-	
+	disposableArray.push(
+		commands.registerCommand('intellij-merge-tool.merge', (uri: any) => {
+			if (uri && uri.path) {
+				openIntelliJMergeTool(uri.path);
+			} else {
+				window.showErrorMessage(NOT_FOUND_CONFLICT_ERROR);
+			}
+		})
+	);
+
 	context.subscriptions.concat(disposableArray);
 }
 
