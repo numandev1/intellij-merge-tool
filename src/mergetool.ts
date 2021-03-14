@@ -23,13 +23,13 @@ export const openIntelliJMergeTool = async (filePath: string) => {
 		const slaveFileRelativePath=await makeFileWithCommand(slaveBranchName,filePath,projectRootPath,fileName,"slave");
         const EXEC_COMMAND:string=COMMAND+` ${masterFileRelativePath} ${slaveFileRelativePath} ${filePath}`;
 		exec(EXEC_COMMAND, [], function(err: null | boolean, stdout: string, stderr: string) {
+			removeFileByPath(masterFileRelativePath);
+			removeFileByPath(slaveFileRelativePath);
 			if (err) {
 				console.log(err,"err");
 				window.showErrorMessage(NOT_FOUND_INTELLIJ_ERROR);
 				return;
 			}
-			removeFileByPath(masterFileRelativePath);
-			removeFileByPath(slaveFileRelativePath);
 		});
 	} else {
 		window.showErrorMessage(NOT_FOUND_CONFLICT_ERROR);
