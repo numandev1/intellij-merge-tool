@@ -27,22 +27,29 @@ export const getFileNameFromFilePath = (filePath: string) => {
 	return fileNameRegex.exec(filePath) + '';
 };
 
-export const makeFileWithCommand=async (branchName:string,filePath:string,rootPath:string,fileName:string,branchType:string)=>{
-	return new Promise((resolve,rejects)=>{
-		const relativeFilePath=path.relative(rootPath,filePath);
-		const newFileName=`.temp.${branchType}.${fileName}`;
-		const EXEC_COMMAND:string=`cd ${rootPath} && git show ${branchName}:${relativeFilePath} > ${newFileName}`;
-		exec(EXEC_COMMAND, [], function(err: null | boolean, stdout: string, stderr: string) {
+export const makeFileWithCommand = async (branchName: string, filePath: string, rootPath: string, fileName: string, branchType: string) => {
+	return new Promise((resolve, rejects) => {
+		const relativeFilePath = path.relative(rootPath, filePath);
+		const newFileName = `.temp.${branchType}.${fileName}`;
+		const EXEC_COMMAND: string = `cd ${rootPath} && git show ${branchName}:${relativeFilePath} > ${newFileName}`;
+		exec(EXEC_COMMAND, [], function (err: null | boolean, stdout: string, stderr: string) {
 			if (err) {
-				console.log(err,"err");
+				console.log(err, "err");
 				rejects("");
 				return;
 			}
-			resolve(path.resolve(rootPath,newFileName));
+			resolve(path.resolve(rootPath, newFileName));
 		});
 	});
 };
 
-export const removeFileByPath=(filePath:any)=>{
+export const removeFileByPath = (filePath: any) => {
 	fs.unlinkSync(filePath);
 };
+
+export const checkIfExist = (filePath: any) => {
+	return fs.existsSync(filePath);
+};
+
+export const INTELLIJ_STORAGE_KEY = "INTELLIJ_STORAGE_KEY";
+export const WRONG_PATH_INPUT = "You enter wrong address of intellij path, please enter correct address of any intellij tool";
