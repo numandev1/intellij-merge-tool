@@ -40,7 +40,7 @@ export const openIntelliJMergeTool = async (filePath: string, context: Extension
 		const fileName = getFileNameFromFilePath(filePath);
 		const masterFileRelativePath = await makeFileWithCommand(masterBranchName, filePath, projectRootPath, fileName, "master");
 		const slaveFileRelativePath = await makeFileWithCommand(slaveBranchName, filePath, projectRootPath, fileName, "slave");
-		const EXEC_COMMAND: string = `${userInputPath} merge ${masterFileRelativePath} ${slaveFileRelativePath} ${filePath}`;
+		const EXEC_COMMAND: string = `${userInputPath} merge ${masterFileRelativePath} ${slaveFileRelativePath} ${filePath} ${filePath}`;
 		console.log(EXEC_COMMAND, "EXEC_COMMANDEXEC_COMMAND");
 		exec(EXEC_COMMAND, [], function (err: null | boolean | any, stdout: string, stderr: string) {
 			removeFileByPath(masterFileRelativePath);
