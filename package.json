@@ -4,6 +4,7 @@
   "description": "merge with intellj",
   "version": "0.0.1",
   "publisher": "nomi9995",
+  "repository": "https://github.com/nomi9995/intellij-merge-tool",
   "engines": {
     "vscode": "^1.53.0"
   },
